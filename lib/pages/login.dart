@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_sinais/pages/class/client.dart';
 import 'package:flutter_application_sinais/pages/pageNumbers.dart';
 import 'package:flutter_application_sinais/pages/reset-password.dart';
 import 'package:flutter_application_sinais/pages/signup.dart';
 
 class LoginPage extends StatelessWidget {
+  TextEditingController textControllerEmail = TextEditingController();
+  TextEditingController textControllerSenha = TextEditingController();
+  String senha = '';
+  String email = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,8 +38,15 @@ class LoginPage extends StatelessWidget {
               height: 40,
             ),
             TextFormField(
+              controller: textControllerEmail,
               autofocus: true,
               keyboardType: TextInputType.emailAddress,
+              validator: (email) {
+                return (textControllerEmail.text != null &&
+                        textControllerEmail.text.contains('@'))
+                    ? 'Do not use the @ char'
+                    : null;
+              },
               decoration: InputDecoration(
                 labelText: "E-mail",
                 labelStyle: TextStyle(
@@ -48,9 +61,15 @@ class LoginPage extends StatelessWidget {
               height: 20,
             ),
             TextFormField(
+              controller: textControllerSenha,
               autofocus: true,
               keyboardType: TextInputType.text,
               obscureText: true,
+              validator: (senha) {
+                return (textControllerSenha.text != null)
+                    ? 'Do not user password'
+                    : null;
+              },
               decoration: InputDecoration(
                 labelText: "Senha",
                 labelStyle: TextStyle(
@@ -123,6 +142,9 @@ class LoginPage extends StatelessWidget {
                       ],
                     ),
                     onPressed: () {
+                      //Future<List<Client>> listaCliente;
+                      //listaCliente = Client().loginUser(email);
+
                       Navigator.push(
                         context,
                         MaterialPageRoute(
