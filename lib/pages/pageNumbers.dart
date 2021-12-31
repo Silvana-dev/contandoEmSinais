@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_sinais/pages/pagesApp/home.dart';
 
 class PageNumbers extends StatelessWidget {
   @override
@@ -10,7 +11,14 @@ class PageNumbers extends StatelessWidget {
           icon: Icon(Icons.cancel_outlined),
           color: Colors.black38,
           alignment: Alignment.centerRight,
-          onPressed: () => Navigator.pop(context, false),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Home(),
+              ),
+            );
+          },
         ),
       ),
       body: Container(

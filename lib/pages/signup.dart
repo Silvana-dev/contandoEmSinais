@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_sinais/pages/class/client.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sqflite/sqflite.dart';
 import 'class/Utility.dart';
@@ -14,6 +15,12 @@ class Signup extends StatefulWidget {
 
 class _SignupState extends State<Signup> {
   File? image;
+
+  TextEditingController _controllerEmail = TextEditingController();
+  TextEditingController _controllerSenha = TextEditingController();
+  TextEditingController _controllerName = TextEditingController();
+
+  Client _client = new Client();
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +86,9 @@ class _SignupState extends State<Signup> {
               height: 40,
             ),
             TextFormField(
+              controller: _controllerName,
               keyboardType: TextInputType.text,
+              validator: (value) => nameValidator(value),
               decoration: InputDecoration(
                 labelText: "Nome",
                 labelStyle: TextStyle(
@@ -93,7 +102,9 @@ class _SignupState extends State<Signup> {
               height: 20,
             ),
             TextFormField(
+              controller: _controllerEmail,
               keyboardType: TextInputType.emailAddress,
+              validator: (value) => emailValidator(value),
               decoration: InputDecoration(
                 labelText: "E-mail",
                 labelStyle: TextStyle(
@@ -107,7 +118,9 @@ class _SignupState extends State<Signup> {
               height: 20,
             ),
             TextFormField(
+              controller: _controllerSenha,
               keyboardType: TextInputType.text,
+              validator: (value) => senhaValidator(value),
               obscureText: true,
               decoration: InputDecoration(
                 labelText: "Senha",
@@ -150,7 +163,10 @@ class _SignupState extends State<Signup> {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  onPressed: () {},
+                  onPressed: () async {
+                    await _client.criarCliente(_controllerName.text,
+                        _controllerEmail.text, _controllerSenha.text);
+                  },
                 ),
               ),
             ),
@@ -189,10 +205,33 @@ class _SignupState extends State<Signup> {
   }
 
   Future<File> saveImagePermanently(String imagePath) async {
-    final directory = await getApplicationDocumentsDirectory();
+    final directory =
+        await Directory('Documents/photos').create(recursive: true);
     final name = basename(imagePath);
     final image = File('${directory.path}/$name');
-
+    _client.setPhoto(image.path);
     return File(imagePath).copy(image.path);
+  }
+
+  //validação da from de cadastro
+  emailValidator(String? value) {
+    if (value!.isEmpty) {
+      return null;
+    }
+    return 'required field';
+  }
+
+  nameValidator(String? value) {
+    if (value!.isEmpty) {
+      return null;
+    }
+    return 'required field';
+  }
+
+  senhaValidator(String? value) {
+    if (value!.isEmpty) {
+      return null;
+    }
+    return 'required field';
   }
 }

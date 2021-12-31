@@ -8,11 +8,10 @@ class Client {
 
   PacoteDao pd = PacoteDao();
 
-  Client(this.email, this.photo, this.nome, this.senha);
+  Client();
 
-  criarCliente(String nome, String photo, String email, String senha) async {
+  criarCliente(String nome, String email, String senha) async {
     this.nome = nome;
-    this.photo = photo;
     this.email = email;
     this.senha = senha;
     if (this.email != null &&
@@ -20,6 +19,9 @@ class Client {
         this.nome != null &&
         this.senha != null) {
       await pd.criarClienteDao(this.nome, this.photo, this.email, this.senha);
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -32,6 +34,10 @@ class Client {
     this.senha = json['senha'];
     this.nome = json['nome'];
     this.photo = json['photo'];
+  }
+
+  setPhoto(String caminho) {
+    this.photo = caminho;
   }
 
   @override
