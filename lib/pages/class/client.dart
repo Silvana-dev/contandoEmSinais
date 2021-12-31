@@ -25,8 +25,8 @@ class Client {
     }
   }
 
-  loginUser(String email) {
-    return pd.loginApp(email);
+  loginUser(String email, String senha) {
+    return pd.loginApp(email, senha);
   }
 
   Client.fromJson(Map<String, dynamic> json) {
@@ -42,6 +42,6 @@ class Client {
 
   @override
   String toString() {
-    return 'Cliente{Email: $email, Photo: $photo, Senha: $senha, Nome: $nome';
+    return 'Cliente {Email: $email, Photo: $photo, Senha: $senha, Nome: $nome';
   }
 }

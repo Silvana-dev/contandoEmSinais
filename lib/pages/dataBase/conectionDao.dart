@@ -3,12 +3,16 @@ import 'package:flutter_application_sinais/pages/dataBase/dateBase.dart';
 import 'package:sqflite/sqflite.dart';
 
 class PacoteDao {
+  String $tableN = 'cliente';
+
   List<Client> lista = [];
 
-  Future<List<Client>> loginApp(String email) async {
+  Future<List<Client>> loginApp(
+      {required String email, required String senha}) async {
     Database database = await DatabaseHelper().db;
 
-    String sql = 'SELECT email, senha FROM package WHERE email = $email;';
+    String sql =
+        'SELECT email, senha FROM cliente WHERE email = $email; AND senha = $senha';
 
     final result = await database.rawQuery(sql);
 
@@ -23,7 +27,7 @@ class PacoteDao {
     Database database = await DatabaseHelper().db;
 
     String sql =
-        "INSERT INTO package (email, photo, nome, senha) VALUES($email, $photo, $nome, $senha);";
+        "INSERT INTO cliente (email, photo, nome, senha) VALUES($email, $photo, $nome, $senha);";
 
     await database.execute(sql);
   }

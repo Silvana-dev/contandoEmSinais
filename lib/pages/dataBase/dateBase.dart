@@ -24,12 +24,12 @@ class DatabaseHelper {
   }
 
   onCreate(Database db, int version) async {
-    String sql = 'create table package'
+    String sql = 'create table cliente'
         '(email varchar(100) PRIMARY KEY, photo varchar(100), nome varchar(100), senha varchar(100));';
     await db.execute(sql);
 
     sql =
-        " INSERT INTO package (email,photo,nome,senha) VALUES(name@gmail.com, assets/profile-picture.png, usuario, 1234);";
+        " INSERT INTO cliente (email,photo,nome,senha) VALUES(name@gmail.com, assets/profile-picture.png, usuario, 1234);";
     await db.execute(sql);
   }
 }
