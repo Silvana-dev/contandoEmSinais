@@ -4,22 +4,35 @@ import 'package:flutter_application_sinais/pages/pageNumbers.dart';
 import 'package:flutter_application_sinais/pages/reset-password.dart';
 import 'package:flutter_application_sinais/pages/signup.dart';
 
-class LoginPage extends StatelessWidget {
-  TextEditingController textControllerEmail = TextEditingController();
-  TextEditingController textControllerSenha = TextEditingController();
-  String senha = '';
-  String email = '';
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+  @override
+  State<LoginPage> createState() => _LoginState();
+}
+
+class _LoginState extends State<LoginPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final TextEditingController _textControllerEmail = TextEditingController();
+  final TextEditingController _textControllerSenha = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.only(
-          top: 60,
-          left: 40,
-          right: 40,
-        ),
-        color: Colors.red[50],
+        body: Container(
+      padding: EdgeInsets.only(
+        top: 60,
+        left: 40,
+        right: 40,
+      ),
+      color: Colors.red[50],
+      child: Form(
+        key: _formKey,
         child: ListView(
           children: <Widget>[
             Container(
@@ -38,14 +51,19 @@ class LoginPage extends StatelessWidget {
               height: 40,
             ),
             TextFormField(
-              controller: textControllerEmail,
+              controller: _textControllerEmail,
               autofocus: true,
               keyboardType: TextInputType.emailAddress,
               validator: (email) {
-                return (textControllerEmail.text != null &&
-                        textControllerEmail.text.contains('@'))
-                    ? 'Do not use the @ char'
-                    : null;
+                if (email == null || email.isEmpty) {
+                  return 'O e-mail não pode ser vazio';
+                } else {
+                  if (!email.contains('@')) {
+                    return 'E-mail inválido';
+                  }
+                }
+
+                return null;
               },
               decoration: InputDecoration(
                 labelText: "E-mail",
@@ -61,14 +79,15 @@ class LoginPage extends StatelessWidget {
               height: 20,
             ),
             TextFormField(
-              controller: textControllerSenha,
+              controller: _textControllerSenha,
               autofocus: true,
               keyboardType: TextInputType.text,
               obscureText: true,
               validator: (senha) {
-                return (textControllerSenha.text != null)
-                    ? 'Do not user password'
-                    : null;
+                if (senha == null || senha.isEmpty) {
+                  return 'A senha é não pode ser vazia';
+                }
+                return null;
               },
               decoration: InputDecoration(
                 labelText: "Senha",
@@ -142,15 +161,19 @@ class LoginPage extends StatelessWidget {
                       ],
                     ),
                     onPressed: () {
-                      //Future<List<Client>> listaCliente;
-                      //listaCliente = Client().loginUser(email);
-
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PageNumbers(),
-                        ),
-                      );
+                      String email = _textControllerEmail.text;
+                      String senha = _textControllerSenha.text;
+                      bool isValid = _formKey.currentState!.validate();
+                      if (isValid) {
+                        Future<List<Client>> listaCliente;
+                        listaCliente = Client().loginUser(email, senha);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PageNumbers(),
+                          ),
+                        );
+                      }
                     }),
               ),
             ),
@@ -215,6 +238,6 @@ class LoginPage extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
   }
 }
