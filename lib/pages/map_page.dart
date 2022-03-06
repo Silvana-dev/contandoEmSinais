@@ -15,7 +15,7 @@ Completer<GoogleMapController> _controller = Completer();
 
   static final CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(-9.75164, -36.6604),
-    zoom: 20,
+    zoom: 14,
   );
 
   @override
