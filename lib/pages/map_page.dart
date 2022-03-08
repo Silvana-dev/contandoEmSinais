@@ -22,8 +22,8 @@ Completer<GoogleMapController> _controller = Completer();
   Widget build(BuildContext context) {
     return new Scaffold(
       body: GoogleMap(
-        markers: [
-        Marker(position: LatLng(-9.75164, -36.6604), markerId: MarkerId("1")),
+        markers: <Marker>{
+          Marker(position: LatLng(-9.75164, -36.6604), markerId: MarkerId("1"))
         ],
         mapType: MapType.normal,
         initialCameraPosition: _kGooglePlex,
