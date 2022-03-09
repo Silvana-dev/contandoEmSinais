@@ -1,14 +1,20 @@
-import 'package:flutter_application_sinais/pages/class/client.dart';
+// ignore_for_file: unnecessary_null_comparison
+
+import 'package:flutter_application_sinais/domain/usuarios.dart';
 import 'package:flutter_application_sinais/pages/dataBase/dateBase.dart';
 import 'package:sqflite/sqflite.dart';
 
 class PacoteDao {
   String $tableN = 'cliente';
 
-  List<Client> lista = [];
+  List<Clientes> lista = [];
 
-  Future<List<Client>> loginApp(
-      {required String email, required String senha}) async {
+  Future<List<Clientes>> loginApp(
+    String email,
+    String senha,
+  ) async {
+    assert(email != null);
+    assert(senha != null);
     Database database = await DatabaseHelper().db;
 
     String sql =
@@ -17,7 +23,7 @@ class PacoteDao {
     final result = await database.rawQuery(sql);
 
     for (var json in result) {
-      Client cliente = Client.fromJson(json);
+      Clientes cliente = Clientes.fromJson(json);
       lista.add(cliente);
     }
     return lista;

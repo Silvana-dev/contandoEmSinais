@@ -1,6 +1,6 @@
-import 'dart:async';
+import 'dart:async' show Timer;
 import 'package:flutter/material.dart';
-import 'package:flutter_application_sinais/pages/login.dart';
+import 'package:flutter_application_sinais/pages/map_page.dart';
 
 class SplashPage extends StatefulWidget {
   @override

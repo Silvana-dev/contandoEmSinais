@@ -1,7 +1,9 @@
+// ignore_for_file: unused_import, deprecated_member_use
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application_sinais/pages/class/client.dart';
+import 'package:flutter_application_sinais/domain/usuarios.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sqflite/sqflite.dart';
 import 'class/Utility.dart';
@@ -20,7 +22,7 @@ class _SignupState extends State<Signup> {
   TextEditingController _controllerSenha = TextEditingController();
   TextEditingController _controllerName = TextEditingController();
 
-  Client _client = new Client();
+  Clientes _client = new Clientes(email: '', nome: '', senha: '');
 
   @override
   Widget build(BuildContext context) {
