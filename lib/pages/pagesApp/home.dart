@@ -1,4 +1,4 @@
-import 'dart:html';
+//import 'dart:html';
 import 'package:flutter_application_sinais/pages/pagesApp/chat.dart';
 import 'package:flutter_application_sinais/pages/pagesApp/profile.dart';
 import 'package:flutter/material.dart';
