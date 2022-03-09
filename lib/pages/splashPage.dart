@@ -1,6 +1,6 @@
 import 'dart:async' show Timer;
 import 'package:flutter/material.dart';
-import 'package:flutter_application_sinais/pages/map_page.dart';
+import 'package:flutter_application_sinais/pages/login.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -15,7 +15,7 @@ class _SplashPageState extends State<SplashPage> {
     Timer(Duration(seconds: 5), () {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => MapPage()),
+        MaterialPageRoute(builder: (context) => LoginPage()),
       );
     });
   }

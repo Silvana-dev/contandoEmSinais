@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, avoid_web_libraries_in_flutter
 
 import 'dart:html';
 import 'package:flutter_application_sinais/pages/pagesApp/chat.dart';

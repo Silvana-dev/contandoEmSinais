@@ -1,12 +1,9 @@
-// ignore_for_file: unused_import, deprecated_member_use
-
+// ignore_for_file: deprecated_member_use
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_sinais/domain/usuarios.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sqflite/sqflite.dart';
-import 'class/Utility.dart';
 import 'dart:async';
 import 'package:path/path.dart';
 
@@ -17,12 +14,16 @@ class Signup extends StatefulWidget {
 
 class _SignupState extends State<Signup> {
   File? image;
-
   TextEditingController _controllerEmail = TextEditingController();
   TextEditingController _controllerSenha = TextEditingController();
   TextEditingController _controllerName = TextEditingController();
 
-  Clientes _client = new Clientes(email: '', nome: '', senha: '');
+  Clientes _client = new Clientes(nome: "", email: "", senha: "");
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -195,10 +196,8 @@ class _SignupState extends State<Signup> {
   Future pickImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-
       if (image == null) return;
-
-      // final imageTemporary = File(image.path);
+      //final imageTemporary = File(image.path);
       final imagPermanent = await saveImagePermanently(image.path);
       setState(() => {this.image = imagPermanent});
     } on PlatformException catch (e) {
@@ -215,7 +214,7 @@ class _SignupState extends State<Signup> {
     return File(imagePath).copy(image.path);
   }
 
-  //validação da from de cadastro
+//validação da from de cadastro
   emailValidator(String? value) {
     if (value!.isEmpty) {
       return null;

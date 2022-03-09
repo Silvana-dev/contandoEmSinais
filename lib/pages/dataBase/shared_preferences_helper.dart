@@ -1,7 +1,6 @@
 import "package:shared_preferences/shared_preferences.dart";
 
 class SharedPreferencesHelper {
-  final Map<String, bool> _key = {'user': false};
   Future<SharedPreferences> get _getInstance async =>
       SharedPreferences.getInstance();
 

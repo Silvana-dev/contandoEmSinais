@@ -1,5 +1,6 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
-import 'package:flutter_application_sinais/domain/usuarios.dart';
 import 'package:flutter_application_sinais/pages/pageNumbers.dart';
 import 'package:flutter_application_sinais/pages/reset-password.dart';
 import 'package:flutter_application_sinais/pages/signup.dart';
@@ -161,13 +162,8 @@ class _LoginState extends State<LoginPage> {
                       ],
                     ),
                     onPressed: () {
-                      String email = _textControllerEmail.text;
-                      String senha = _textControllerSenha.text;
                       bool isValid = _formKey.currentState!.validate();
                       if (isValid) {
-                        Future<List<Clientes>> listaCliente;
-                        listaCliente = Clientes(email: '', nome: '', senha: '')
-                            .loginUser(email, senha);
                         Navigator.push(
                           context,
                           MaterialPageRoute(

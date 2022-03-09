@@ -1,4 +1,3 @@
-import 'package:flutter_application_sinais/pages/dataBase/dateBase.dart';
 import 'package:flutter_application_sinais/pages/splashPage.dart';
 
 import 'package:flutter/material.dart';

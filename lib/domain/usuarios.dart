@@ -22,10 +22,7 @@ class Clientes {
     this.nome = nome;
     this.email = email;
     this.senha = senha;
-    if (this.email != null &&
-        this.photo != null &&
-        this.nome != null &&
-        this.senha != null) {
+    if (this.email != null && this.nome != null && this.senha != null) {
       await pd.criarClienteDao(this.nome, this.photo, this.email, this.senha);
       return true;
     } else {
