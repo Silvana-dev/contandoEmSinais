@@ -1,5 +1,5 @@
-import 'package:flutter_application_sinais/pages/class/client.dart';
-import 'package:flutter_application_sinais/pages/dataBase/dateBase.dart';
+import 'package:flutter_application_sinais/pages/class/client.dart' show Client;
+import 'package:flutter_application_sinais/pages/dataBase/db/dateBase.dart';
 import 'package:sqflite/sqflite.dart';
 
 class PacoteDao {
