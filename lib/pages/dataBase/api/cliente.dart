@@ -1,23 +1,27 @@
-import 'package: http/http.dart' as http;
+// ignore_for_file: unused_import
 
-class ClientApi{
+import 'dart:convert' show json;
+import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
+import 'package:flutter_application_sinais/domain/usuarios.dart';
 
-  final string _baseurl = 'https://urldaapiaqui';
-  final map<String, String> headers = { 'Content_type': 'application/json'};
+class ClientApi {
+  final String _baseurl = 'https://urldaapiaqui.com';
+  final Map<String, String> headers = {'Content_type': 'application/json'};
 
-
-  getCliente(){
-    Uri url = Uri.https(_baseUrl, '/api/findAll');
+  getCliente() async {
+    Uri url = Uri.https(_baseurl, '/api/findAll');
     var response = await http.get(url, headers: headers);
 
-    List<Cliente> lista = <Cliente>[];
-    if(response.statusCode == 200){
-      List <dynamic> decodeResponse = await json.decode(response.body);
-      for (var json in decodeResponse){
-        Cliente cliente = Cliente.fromJson(element);
+    List<Clientes> lista = <Clientes>[];
+    if (response.statusCode == 200) {
+      List<dynamic> decodeResponse = await json.decode(response.body);
+      for (var element in decodeResponse) {
+        Clientes cliente = Clientes.fromJson(element);
         lista.add(cliente);
       }
     }
+
     return lista;
   }
 }

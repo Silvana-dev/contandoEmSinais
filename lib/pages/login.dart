@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_sinais/pages/class/client.dart';
+import 'package:flutter_application_sinais/domain/usuarios.dart';
 import 'package:flutter_application_sinais/pages/pageNumbers.dart';
 import 'package:flutter_application_sinais/pages/reset-password.dart';
 import 'package:flutter_application_sinais/pages/signup.dart';
@@ -165,8 +165,9 @@ class _LoginState extends State<LoginPage> {
                       String senha = _textControllerSenha.text;
                       bool isValid = _formKey.currentState!.validate();
                       if (isValid) {
-                        Future<List<Client>> listaCliente;
-                        listaCliente = Client().loginUser(email, senha);
+                        Future<List<Clientes>> listaCliente;
+                        listaCliente = Clientes(email: '', nome: '', senha: '')
+                            .loginUser(email, senha);
                         Navigator.push(
                           context,
                           MaterialPageRoute(

@@ -1,6 +1,8 @@
-import 'package:flutter_application_sinais/pages/dataBase/conectionDao.dart';
+// ignore_for_file: unnecessary_null_comparison
 
-class Client {
+import 'package:flutter_application_sinais/pages/dataBase/db/conectionDao.dart';
+
+class Clientes {
   late String nome;
   late String email;
   late String senha;
@@ -8,7 +10,13 @@ class Client {
 
   PacoteDao pd = PacoteDao();
 
-  Client();
+  Clientes({
+    required this.nome,
+    required this.email,
+    required this.senha,
+  }) {
+    throw UnimplementedError();
+  }
 
   criarCliente(String nome, String email, String senha) async {
     this.nome = nome;
@@ -29,7 +37,7 @@ class Client {
     return pd.loginApp(email, senha);
   }
 
-  Client.fromJson(Map<String, dynamic> json) {
+  Clientes.fromJson(Map<String, dynamic> json) {
     this.email = json['email'];
     this.senha = json['senha'];
     this.nome = json['nome'];

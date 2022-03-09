@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'dart:html';
 import 'package:flutter_application_sinais/pages/pagesApp/chat.dart';
 import 'package:flutter_application_sinais/pages/pagesApp/profile.dart';
@@ -7,8 +9,6 @@ import 'package:path/path.dart';
 class Home extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _Home();
-  // TODO: implement createState
-
 }
 
 class _Home extends State<Home> {
