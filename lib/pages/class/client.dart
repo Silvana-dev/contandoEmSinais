@@ -1,4 +1,4 @@
-import 'package:flutter_application_sinais/pages/dataBase/conectionDao.dart';
+import 'package:flutter_application_sinais/pages/dataBase/db/conectionDao.dart';
 
 class Client {
   late String nome;
@@ -26,7 +26,7 @@ class Client {
   }
 
   loginUser(String email, String senha) {
-    return pd.loginApp(email, senha);
+    return pd.loginApp(email: email, senha: senha);
   }
 
   Client.fromJson(Map<String, dynamic> json) {
