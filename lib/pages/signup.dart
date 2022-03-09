@@ -23,6 +23,11 @@ class _SignupState extends State<Signup> {
   Client _client = new Client();
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
@@ -196,7 +201,7 @@ class _SignupState extends State<Signup> {
 
       if (image == null) return;
 
-      // final imageTemporary = File(image.path);
+      //final imageTemporary = File(image.path);
       final imagPermanent = await saveImagePermanently(image.path);
       setState(() => {this.image = imagPermanent});
     } on PlatformException catch (e) {
